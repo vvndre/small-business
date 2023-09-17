@@ -7,9 +7,9 @@ export default function NavBar() {
     <div
       style={{
         width: "100%",
-        minWidth: "500px",
+        minWidth: "400px",
         margin: "auto",
-        height: "80px",
+        height: "75px",
         backgroundColor: "#F6F6F6",
         display: "grid",
         gridTemplateColumns: "30% auto 30%",
@@ -45,16 +45,18 @@ export default function NavBar() {
         >
           <Link
             style={{ textDecoration: "none", margin: "5px" }}
-            to="/dashboard"
+            to="/"
           >
-            <Button variant="contained">Dashboard</Button>
+            <Button variant="contained">Home</Button>
           </Link>
+
           <Link
             style={{ textDecoration: "none", margin: "5px" }}
             to="/listings"
           >
             <Button variant="contained">Listings</Button>
           </Link>
+
           <Link style={{ textDecoration: "none", margin: "5px" }} to="/login">
             <Button variant="contained">Login</Button>
           </Link>
