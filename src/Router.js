@@ -1,11 +1,30 @@
-import React from 'react'
-import { Routes, Route } from "react-router-dom";
-import Listing from "./containers/Listings"
+import React from "react";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
+import BusinessDetails from "./containers/BusinessDetails";
+import Login from "./containers/Login";
+import Listings from "./containers/Listings";
+import AddListing from "./containers/AddListing";
 
-export default function Router() {
+export const CheckAuth = () => {
+  const cookies = cookies.parse(document.cookie);
+  return cookies["loggedIn"] ? true : false;
+};
+
+export const ProtectedRoutes = () => {
+  return CheckAuth() ? <Outlet /> : <Navigate to="/login" />;
+};
+
+const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Listing />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/addListing" element={<AddListing/>}></Route>
+      </Route>
+      <Route exact path="/" element={<Listings />} />
+      <Route path="/business/:id" element={<BusinessDetails />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
-  )
-}
+  );
+};
+
+export default Router;
